@@ -1,6 +1,5 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { nanoid } from 'nanoid';
 import {
   FormContact,
   Label,
@@ -43,8 +42,8 @@ const initialValues = {
 
 export const ContactForm = ({ onSubmit }) => {
 
+
   const handleSubmit = (values, { resetForm }) => {
-    values.id = nanoid();
     onSubmit({ ...values });
     resetForm();
   }

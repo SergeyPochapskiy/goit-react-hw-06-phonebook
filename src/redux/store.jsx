@@ -11,8 +11,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { contactsSlice } from './contactsSlice';
-import { filterSlice } from './filterSlice';
+import { contactsSlice } from './contacts/contactsSlice';
+import { filterSlice } from './filter/filterSlice';
 
 const persistConfig = {
   key: 'contacts',
@@ -35,6 +35,6 @@ export const store = configureStore({
   },
 });
 
-export const filterValue = state => state.filter;
-export const contactValue = state => state.phonebook.contacts;
+// export const filterValue = state => state.filter;
+// export const contactValue = state => state.phonebook.contacts;
 export const persistor = persistStore(store);
