@@ -1,3 +1,7 @@
+
+import { useDispatch, useSelector } from 'react-redux';
+import { contactValue } from 'redux/selectors';
+
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -7,6 +11,7 @@ import {
   Button,
   ErrorText,
 } from './ContactForm.styled.jsx';
+
 
 const nameValidate =
   "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
@@ -40,11 +45,22 @@ const initialValues = {
   number: '',
 };
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = () => {
 
+  const contacts = useSelector(contactValue);
+
+  const dispatch = useDispatch();
+  const addContact = name => {
+    contacts.find(
+      contact => contact.name.toLowerCase() === name.name.toLowerCase()
+    )
+      ? alert(`${name.name} is already in contacts`)
+      : dispatch(addContact(name));
+  };
 
   const handleSubmit = (values, { resetForm }) => {
-    onSubmit({ ...values });
+    // onSubmit({ ...values });
+    addContact (values);
     resetForm();
   }
 
